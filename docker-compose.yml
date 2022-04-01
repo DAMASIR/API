@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  database:
+  mysql:
     image: mysql:8.0
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
