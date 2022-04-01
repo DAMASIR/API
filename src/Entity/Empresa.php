@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 use App\Repository\EmpresaRepository;
@@ -31,6 +33,14 @@ class Empresa
 
     #[ORM\Column(type: 'boolean')]
     private $destacada;
+
+    #[ORM\OneToMany(mappedBy: 'empresa', targetEntity: Cotizacion::class, orphanRemoval: true)]
+    private $cotizaciones;
+
+    public function __construct()
+    {
+        $this->cotizaciones = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +115,36 @@ class Empresa
     public function setDestacada(bool $destacada): self
     {
         $this->destacada = $destacada;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cotizacion>
+     */
+    public function getCotizaciones(): Collection
+    {
+        return $this->cotizaciones;
+    }
+
+    public function addCotizacion(Cotizacion $cotizacion): self
+    {
+        if (!$this->cotizaciones->contains($cotizacion)) {
+            $this->cotizaciones[] = $cotizacion;
+            $cotizacion->setEmpresa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCotizacion(Cotizacion $cotizacion): self
+    {
+        if ($this->cotizaciones->removeElement($cotizacion)) {
+            // set the owning side to null (unless already changed)
+            if ($cotizacion->getEmpresa() === $this) {
+                $cotizacion->setEmpresa(null);
+            }
+        }
 
         return $this;
     }
