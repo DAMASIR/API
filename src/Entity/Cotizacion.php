@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CotizacionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CotizacionRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: CotizacionRepository::class)]
+#[ApiResource]
 class Cotizacion
 {
     #[ORM\Id]
