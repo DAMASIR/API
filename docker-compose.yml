@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: 'toor'
+    ports:
+      - '3306:3306'
+    restart: always
+    volumes:
+      - ./.docker/data/mysql:/var/lib/mysql
+
+  web:
+    build:
+      context: ./.docker/web
+    container_name: cotizaciones-web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/
+    env_file:
+      - .env
+    depends_on:
+      - mysql
