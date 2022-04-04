@@ -29,7 +29,7 @@ Instrucciones para levantar el entorno de pruebas del proyecto:
 * Desde tu equipo abrir la url <http://127.0.0.1/api> para acceder al servidor web Apache de la API
 * Desde tu equipo abrir la url <http://127.0.0.1/admin> para acceder al panel que permite gestionar los datos vía web
 
-##TODO:
+## TODO:
 
 * Cotización realicionada con Empresa en admin
 * Subir logo como fichero
