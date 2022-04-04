@@ -19,12 +19,12 @@ Curso 2º cuatrimestre 2021-2022.
 * Cliente MySQL, ej. MySQL Workbench
 * Git para acceder al repositorio de GitHub
 * IDE: cualquier editor de texto plano. Recomendado Visual Studio Code.
-* Postman para depurar la API
 
 ## Entorno de pruebas
 
 Instrucciones para levantar el entorno de pruebas del proyecto:
 
 * Ejecutar "docker-compose up -d" para levantar el servidor de Apache+PHP y MySQL
-* Primera instalación ejecutando "docker-compose exec web make install"
+* Acceder a la consola del servidor web ejecutando "docker-compose exec web"
+* Una vez en la consola del servidor web ejecutamos "symfony console doctrine:migrations:migrate" para crear la base de datos
 * Desde tu equipo abrir la url <https://127.0.0.1> para acceder al servidor web Apache de la API
