@@ -15,8 +15,7 @@ Curso 2º cuatrimestre 2021-2022.
 
 ### Desarrollo
 
-* Docker
-* Cliente MySQL, ej. MySQL Workbench
+* Docker Engine + Docker Compose para crear servidores virtuales
 * Git para acceder al repositorio de GitHub
 * IDE: cualquier editor de texto plano. Recomendado Visual Studio Code.
 
@@ -26,5 +25,6 @@ Instrucciones para levantar el entorno de pruebas del proyecto:
 
 * Ejecutar "docker-compose up -d" para levantar el servidor de Apache+PHP y MySQL
 * Acceder a la consola del servidor web ejecutando "docker-compose exec web"
-* Una vez en la consola del servidor web ejecutamos "symfony console doctrine:migrations:migrate" para crear la base de datos
-* Desde tu equipo abrir la url <https://127.0.0.1> para acceder al servidor web Apache de la API
+* Una vez en la consola del servidor web ejecutamos "symfony console doctrine:migrations:migrate" para crear la base de datos y las tablas necesarias
+* Desde tu equipo abrir la url <https://127.0.0.1/api> para acceder al servidor web Apache de la API
+* Desde tu equipo abrir la url <https://127.0.0.1/admin> para acceder al panel que permite gestionar los datos vía web
