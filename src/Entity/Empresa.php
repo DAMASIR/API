@@ -7,36 +7,50 @@ use Doctrine\ORM\Mapping\Entity;
 use App\Repository\EmpresaRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EmpresaRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['empresa']],
+    denormalizationContext: ['groups' => ['empresa']],
+    order: ["nombre" => "ASC"],
+)]
 class Empresa
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['empresa'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['empresa'])]
     private $nombre;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['empresa'])]
     private $logo;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['empresa'])]
     private $sector;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['empresa'])]
     private $direccion;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['empresa'])]
     private $url;
 
     #[ORM\Column(type: 'boolean')]
+    #[Groups(['empresa'])]
     private $destacada;
 
     #[ORM\OneToMany(mappedBy: 'empresa', targetEntity: Cotizacion::class, orphanRemoval: true)]
+    #[ApiSubresource(maxDepth: 1)]
     private $cotizaciones;
 
     public function __construct()

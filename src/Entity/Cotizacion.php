@@ -6,27 +6,37 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CotizacionRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: CotizacionRepository::class)]
-#[ApiResource]
-#[ApiFilter(SearchFilter::class, properties: ['empresa' => 'exact'])]
+#[ApiResource(
+    normalizationContext: ['groups' => ['cotizacion']],
+    denormalizationContext: ['groups' => ['cotizacion']],
+    order: ["fecha" => "DESC"],
+)]
 class Cotizacion
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['cotizacion'])]
     private $id;
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups(['cotizacion'])]
     private $fecha;
 
     #[ORM\Column(type: 'float')]
+    #[Groups(['cotizacion'])]
     private $valor;
 
     #[ORM\ManyToOne(targetEntity: Empresa::class, inversedBy: 'cotizaciones')]
-    #[ORM\JoinColumn(nullable: false)]
-    
+    #[ORM\JoinColumn(nullable: false)]      
+    #[Groups(['cotizacion'])]
+    #[ApiSubresource(maxDepth: 1)]
+    #[ApiFilter(SearchFilter::class, properties: ['empresa' => 'exact'])]
     private $empresa;
 
     public function getId(): ?int
