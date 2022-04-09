@@ -44,6 +44,10 @@ class Empresa
         $this->cotizaciones = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return (string) $this->getNombre();
+    }
     public function getId(): ?int
     {
         return $this->id;

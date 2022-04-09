@@ -3,7 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Cotizacion;
+
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CurrencyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
 class CotizacionCrudController extends AbstractCrudController
 {
@@ -22,4 +28,12 @@ class CotizacionCrudController extends AbstractCrudController
         ];
     }
     */
+
+    public function configureFields(string $pageName): iterable
+    {
+        yield AssociationField::new('empresa');
+        yield DateTimeField::new('fecha');
+        yield NumberField::new('valor');
+        
+    }
 }
