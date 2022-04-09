@@ -30,6 +30,11 @@ class Cotizacion
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return (string) $this->getFecha()->format('d-m-Y H:i:s');;
+    }
+
     public function getFecha(): ?\DateTimeInterface
     {
         return $this->fecha;
