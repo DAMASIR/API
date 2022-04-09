@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CotizacionRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: CotizacionRepository::class)]
 #[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['empresa' => 'exact'])]
 class Cotizacion
 {
     #[ORM\Id]
@@ -23,6 +26,7 @@ class Cotizacion
 
     #[ORM\ManyToOne(targetEntity: Empresa::class, inversedBy: 'cotizaciones')]
     #[ORM\JoinColumn(nullable: false)]
+    
     private $empresa;
 
     public function getId(): ?int
