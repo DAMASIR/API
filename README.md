@@ -9,9 +9,11 @@ Curso 2º cuatrimestre 2021-2022.
 
 ## Requisitos técnicos
 
+### Servidor producción
+
+* Apache 2.4
 * MySQL 8.0
-* PHP 8.0
-* Servidor web: Apache 2.4
+* PHP 8.1
 
 ### Desarrollo
 
@@ -19,7 +21,7 @@ Curso 2º cuatrimestre 2021-2022.
 * Git para acceder al repositorio de GitHub
 * IDE: cualquier editor de texto plano. Recomendado Visual Studio Code.
 
-## Entorno de pruebas
+## Ejecución en entorno de pruebas
 
 Instrucciones para levantar el entorno de pruebas del proyecto:
 
@@ -36,5 +38,4 @@ El servidor y la aplicacación están listos para usarse en las url:
 
 ## TODO:
 
-* Cotización realicionada con Empresa en admin
-* Subir logo como fichero
+* ¿Logo como fichero en vez de url?
